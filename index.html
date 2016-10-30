@@ -216,6 +216,9 @@
         position: relative;
         margin: 2em auto;
       }
+      .work-item-image {
+        max-width: 100%;
+      }
       .about-image-caption {
         margin-top: -2em;
         margin-bottom: 1em;
@@ -231,6 +234,9 @@
         font-size: 1.125em;
         line-height: 1.5em;
         opacity: 0.75;
+      }
+      .work-item-text {
+        width: 90%;
       }
       .about-text {
         text-align: left;
@@ -325,6 +331,7 @@
         margin: 1em auto;
         text-align: center;
         position: relative;
+        width: 90%;
       }
       .work-item > a {
         position:absolute;
@@ -332,34 +339,26 @@
         height:100%;
         top:0;
         left:0;
-        z-index:1;
+        z-index:99;
         background-color:white;
         opacity: 0;
-        filter: alpha(opacity=1);
       }
       .work-item-title:first-of-type {
         position: absolute;
-        top: calc(50% - 0.5em);
-        bottom: 0;
+        top: 0;
         left: 0;
         right: 0;
-        margin: auto;
-        font-size: 2em;
-        opacity: 0;
-      }
-      .work-item:hover > .work-item-title:first-of-type {
-        opacity: 0.75;
+        margin: 0 auto;
+        font-size: 1.5em;
+        opacity: 0.40;
+        background-color: #F9F9F9;
+        z-index: 9;
+        padding: 0.25em 0;
       }
       .work-item-image:first-of-type {
         margin: auto;
-        max-width: 90%;
+        max-width: 100%;
         opacity: 1;
-      }
-      .work-item:hover > .work-item-image:first-of-type {
-        opacity: 0.5;
-      }
-      .work-item-title:first-of-type, .work-item-image:first-of-type {
-        transition: opacity 0.125s linear;
       }
 
       .work-item-title:not(:first-of-type), .work-item-image:not(:first-of-type), .work-item-text {
@@ -370,14 +369,37 @@
         display: none;
      }
       .work-item:target > .work-item-title, .work-item:target:hover > .work-item-title, .work-item:target:hover > .work-item-image {
-        opacity: 1;
+        opacity: 1 !important;
       }
       .work-item:target > .work-item-title {
         display: block;
-        width: 80%;
+        width: 90%;
         position: relative;
         margin: 1em auto;
+        padding: 0;
         font-size: 2em;
+      }
+      /* Thanks to lugolabs (http://lugolabs.com/caret) */
+      .work-item-title:first-of-type:before {
+        content: '';
+        position: absolute;
+        top: 30%;
+        left: 95%;
+        border-left: 8px solid #000000;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+      }
+      .work-item-title:first-of-type:after {
+        content: '';
+        position: absolute;
+        top: calc(30% + 3px);
+        left: 95%;
+        border-left: 5px solid #F9F9F9;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+      }
+      .work-item:target > .work-item-title:first-of-type:before, .work-item:target > .work-item-title:first-of-type:after {
+        content: none;
       }
       .work-item:target > .work-item-image, .work-item:target > .work-item-text {
         display: block;
@@ -420,6 +442,7 @@
         display: none;
       }
 
+
       /* Screens larger than 768 are treated as non-mobile */
       @media (min-width: 768px) {
         #nav-toggle {
@@ -455,14 +478,39 @@
           opacity: 1;
         }
 
+        .work-item-title:first-of-type {
+          top: calc(50% - 0.5em);
+          bottom: 0;
+          margin: auto;
+          font-size: 2em;
+          padding: 0;
+          opacity: 0;
+          z-index: 0;
+        }
+        .work-item-title:first-of-type:before, .work-item-title:first-of-type:after {
+          content: none;
+        }
+        .work-item:hover > .work-item-title:first-of-type {
+          opacity: 0.75;
+        }
+        .work-item:hover > .work-item-image:first-of-type {
+          opacity: 0.5;
+        }
+        .work-item-title:first-of-type, .work-item-image:first-of-type {
+          transition: opacity 0.125s linear;
+        }
+
         /* TODO: maybe keep this, maybe not.
-           It can make the state in consistent with the url... */
+           It can make the state inconsistent with the url... */
         #nav:target + #body {
           display: block;
         }
 
-        .work-item:target > .work-item-title, .work-item-text, .about-text, .contact-text, .about-banner, .contact-banner, .cursive-banner, #work-banner, .contact-links {
+        .about-text, .contact-text, .about-banner, .contact-banner, .cursive-banner, #work-banner, .contact-links {
           width: 65% !important;
+        }
+        .work-item:target > .work-item-title, .work-item-text {
+          width: 75% !important;
         }
         .about-text {
           line-height: 2em;
