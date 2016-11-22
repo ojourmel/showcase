@@ -1,4 +1,4 @@
-## [Showcase](https://ojourmel.github.io/showcase/)
+## [Showcase Demo](https://ojourmel.github.io/showcase/)
 
 A portfolio type landing page, implemented as a CSS driven SPA. While it is designed for artists, photographers, or other content creators, it is relatively flexible.
 
